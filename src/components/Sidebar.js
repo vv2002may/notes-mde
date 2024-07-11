@@ -1,15 +1,20 @@
 import React from "react"
 
 export default function Sidebar(props) {
+ 
     const noteElements = props.notes.map((note, index) => (
-        <div key={note.id} className=".note-list">
+        
+        <div key={note.id} className="note-list">
             <div
                 className={`title ${note.id === props.currentNote.id ? "selected-note" : ""
                     }`}
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
+                
                 <h4 className="text-snippet">
-                    {(note.body.split('\n')[0])}
+                    {
+                        (note.body) ? (note.body.split('\n')[0]): `Note ${index + 1}`
+                    }
                 </h4>
                 <img
                     className="delete-btn"
