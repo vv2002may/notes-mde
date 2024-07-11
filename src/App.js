@@ -39,7 +39,7 @@ export default function App() {
     const newNote = {
       id: nanoid(),
       // body: "# Type your markdown note's title here"
-      body: `Hi${notes.length + 1}`
+      body: `Note ${notes.length + 1}`
     }
     setNotes(prevNotes => [newNote, ...prevNotes])
     setCurrentNoteId(newNote.id)
@@ -64,7 +64,7 @@ export default function App() {
     })
   }
 
-  function deleteNote(event,noteId) {
+  function deleteNote(event, noteId) {
     event.stopPropagation()
     setNotes(oldNotes => oldNotes.filter(note => note.id !== noteId))
     console.log(noteId)
@@ -78,45 +78,42 @@ export default function App() {
 
   return (
     <main>
-      <div>
-        {
-          notes.length > 0
-            ?
-            <Split
-              sizes={[30, 70]}
-              direction="horizontal"
-              className="split"
-            >
-              <Sidebar
-                notes={notes}
+      {
+        notes.length > 0
+          ?
+          <Split
+            sizes={[30, 70]}
+            direction="horizontal"
+            className="split"
+          >
+            <Sidebar
+              notes={notes}
+              currentNote={findCurrentNote()}
+              setCurrentNoteId={setCurrentNoteId}
+              newNote={createNewNote}
+              deleteNote={deleteNote}
+            />
+            {
+              currentNoteId &&
+              notes.length > 0 &&
+              <Editor
                 currentNote={findCurrentNote()}
-                setCurrentNoteId={setCurrentNoteId}
-                newNote={createNewNote}
-                deleteNote={deleteNote}
+                updateNote={updateNote}
               />
-              {
-                currentNoteId &&
-                notes.length > 0 &&
-                <Editor
-                  currentNote={findCurrentNote()}
-                  updateNote={updateNote}
-                />
-              }
-            </Split>
-            :
-            <div className="no-notes">
-              <h1>You have no notes!</h1>
-              <button
-                className="first-note"
-                onClick={createNewNote}
-              >
-                Create one now
-              </button>
-            </div>
+            }
+          </Split>
+          :
+          <div className="no-notes">
+            <h1>You have no notes!</h1>
+            <button
+              className="first-note"
+              onClick={createNewNote}
+            >
+              Create one now
+            </button>
+          </div>
 
-        }
-      </div>
-      <hr/>
+      }
     </main>
   )
 }

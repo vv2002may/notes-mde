@@ -11,14 +11,12 @@ export default function Sidebar(props) {
                 <h4 className="text-snippet">
                     {(note.body.split('\n')[0])}
                 </h4>
-                <button className="delete-btn">
-                    <i
-                        className="gg-trash trash-icon"
-                        onClick={(event) => props.deleteNote(event, note.id)}
-                    ></i>
-                </button>
+                <img
+                    className="delete-btn"
+                    src={require(`../images/delete.png`)}
+                    onClick={(event) => props.deleteNote(event, note.id)}
+                />
             </div>
-            {/* <hr/> */}
         </div>
     ))
 

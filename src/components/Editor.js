@@ -1,7 +1,7 @@
 import React from "react"
 import ReactMde from "react-mde"
 import Showdown from "showdown"
-import "react-mde/lib/styles/css/react-mde-all.css";
+import "react-mde/lib/styles/css/react-mde-all.css"
 
 export default function Editor({ currentNote, updateNote }) {
     const [selectedTab, setSelectedTab] = React.useState("write")
@@ -23,7 +23,7 @@ export default function Editor({ currentNote, updateNote }) {
                 generateMarkdownPreview={(markdown) =>
                     Promise.resolve(converter.makeHtml(markdown))
                 }
-                minEditorHeight={92}
+                minEditorHeight={85.9}
                 heightUnits="vh"
             />
         </section>
